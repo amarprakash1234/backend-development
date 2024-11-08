@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "figlet": "^1.7.0",
+    "random-words": "^2.0.1"
+  },
+  "type": "module"
+}
