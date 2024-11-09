@@ -1,7 +1,12 @@
-const express = require('express');
+const express = require('express'); // Ye express actually ek function hai jisse ham execute krte hai.
 const app = express();
 const port = 8080;
 
+// console.log(app);
+
+// app.use((req, res) => {
+//   // console.log(res);
+// })
 
 app.get('/' , (req, res) => {
   res.send('You contacted root path!');
