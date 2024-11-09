@@ -5,13 +5,14 @@ const port = 8080;
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+// app.use(express.static("public"));// eski jarurt nhi hai.
 app.use(express.static(path.join(__dirname, 'public')));
 app.get("/", (req, res) => {
     res.render("home.ejs");
+    // res.sendFile(path.join(__dirname, 'public', 'index.html')); // by this line we send a pure html file to user.
 });
 
-app.get("/rollDice", (req, res) => {
+app.get("/rolldice", (req, res) => {
     let num = Math.floor(Math.random()*6) + 1;
     const obj = {
         diceVal : num
