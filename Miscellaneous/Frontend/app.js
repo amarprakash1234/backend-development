@@ -20,6 +20,9 @@
 // }
 
 // let s1 = new Student('Amar', 20, 67);
+
+// console.log(s1);
+
 // s1.talk();
 // s1.walk();
 // console.log(s1.name);
@@ -41,6 +44,7 @@
 
 // let p1 = new Person("adam", 25);
 // let p2 = new Person("eve", 24);
+// console.log(p1);
 
 
 
@@ -85,6 +89,16 @@
 
 // let p1 = new Person("adam", 24);
 // let p2 = new Person("eve", 23);
+
+// console.log(p1);
+
+
+// let arr = [1, 4, 2, 6];
+
+// arr.sayHello = () => {
+//     console.log("Hello World!");
+// }
+
 
 
 
