@@ -5,7 +5,7 @@ const path = require("path");
 const methodOverride = require('method-override');
 
 app.use(methodOverride("_method"));
-app.use(express.static('public'));
+// app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended : true}));
 app.set("view engine", "ejs");
@@ -30,6 +30,10 @@ let posts = [
         id : uuidv4()
     },
 ];
+
+app.get("/", (req, res) => {
+    res.send("Server Working Well!");
+});
 
 app.get('/posts' , (req, res) => {
     res.render('index.ejs', { posts });
