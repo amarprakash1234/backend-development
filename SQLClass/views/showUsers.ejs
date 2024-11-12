@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALl USers</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         table{
             border: 2px solid black;
+            border-collapse: collapse;
         }
         th, td{
             border: 2px solid black;
-            border-collapse: collapse;
+            padding: 8px;
+            
         }
     </style>
 </head>
 <body>
     
     <table>
-        <tr>
+        <tr style="background-color: rgb(86, 166, 216);">
             <th>Id</th>
             <th>Username</th>
             <th>Email</th>
+            <th>Edit Button</th>
         </tr>
         
         <% for(user of users) { %>
@@ -30,7 +34,7 @@
                 <td><%= user.email %></td>
                 <td>
                     <form method="GET" action="/user/<%= user.id %>/edit">
-                        <button>Edit Username</button>
+                        <button style="background-color: rgb(196, 196, 37);border-radius: 4px;">Edit Username</button>
                     </form>
                 </td>
             </tr>

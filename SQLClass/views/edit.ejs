@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Username</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>You are abiut to edit this user : <%= user.email %></h1>
+    <h1>You are about to edit this user : <%= user.email %></h1>
 
     <form method="POST" action="/user/<%= user.id %>?_method=PATCH">
-        <textarea name="username" >
-            <%= user.username %>
-        </textarea><br><br>
-        <input type="password" name="password" placeholder="Enter Password"><br>
-        <button>Edit</button>
+        <textarea rows="4" cols="50" name="username" ><%= user.username %></textarea><br><br>
+        <input style="height:50px; width:300px; " type="password" name="password" placeholder="Enter Password" required><br>
+        <button style="height: 40px;width: 200px;background-color: rgb(204, 86, 86);border-radius: 8px;margin-top: 20px;">Edit</button>
     </form>
 
 

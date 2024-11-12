@@ -7,7 +7,8 @@ const methodOverride = require("method-override");
 
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({extended : true}));
-app.set('views engine', "ejs");
+app.use(express.static(path.join(__dirname, "public")));
+app.set("views engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 const connection = mysql.createConnection({
@@ -17,6 +18,23 @@ const connection = mysql.createConnection({
     password : '@amar1234'
 });
 
+// let getRandomUser = () => {
+//     return [
+//         faker.string.uuid(),
+//         faker.internet.userName(), // before version 9.1.0, use userName()
+//         faker.internet.email(),
+//         faker.internet.password()
+//     ];
+// }
+
+// Inserting a new data
+// let q = "INSERT INTO user (id, username, email, password) VALUES (?, ?, ?, ?)";
+// let user = ["123", "123_newuser", "abc@gmail.com", "abc"];
+
+// Inserting TWo Data
+// let q = "INSERT INTO user (id, username, email, password) VALUES ?";
+// let users = [["123b", "123_newuserb", "abc@gmail.comb", "abcb"], ["123c", "123_newuserc", "abc@gmail.comc", "abcc"]];
+
 // try{
 //     connection.query("SHOW TABLES", (err, result) => {
 //         if(err) throw err;
@@ -25,6 +43,44 @@ const connection = mysql.createConnection({
 // } catch(err) {
 //     console.log(err);
 // }
+
+// try{
+//     connection.query(q, user, (err, result) => {
+//         if(err) throw err;
+//         console.log(result);
+//     })
+// } catch(err) {
+//     console.log(err);
+// }
+
+// try{
+//     connection.query(q, [users], (err, result) => {
+//         if(err) throw err;
+//         console.log(result);
+//     })
+// } catch(err) {
+//     console.log(err);
+// }
+
+// Insert in Bulk
+// let data = [];
+// for(let i = 1; i<=100; i++) {
+//     data.push(getRandomUser());
+// }
+
+
+// let q = "INSERT INTO user (id, username, email, password) VALUES ?";
+
+// try{
+//     connection.query(q, [data], (err, result) => {
+//         if(err) throw err;
+//         console.log(result);
+//     })
+// } catch(err) {
+//     console.log(err);
+// }
+
+
 
 
 // Home ROUTE
