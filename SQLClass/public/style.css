@@ -1,0 +1,31 @@
+/* css of home.ejs */
+
+.body{
+    /* font-family: Papyrus; */
+    background-image: url("https://img.freepik.com/free-vector/social-media-icons_53876-89125.jpg?t=st=1731419454~exp=1731423054~hmac=5cef4465589f0e88e9c64b44367f459bc059b52991f60cc86fb1dcafc66a8c9f&w=1800");
+    background-size: cover;
+
+}
+.home {
+    height: 220px;
+    width: 640px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(196, 196, 16);
+    border-radius: 14px;
+    margin-top: 160px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    height: 40px;
+    width: 200px;
+    background-color: rgb(204, 86, 86);
+    border-radius: 8px;
+    margin-top: 60px;
+    margin-left: 600px;
+    
+}
+
