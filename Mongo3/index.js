@@ -48,6 +48,7 @@ app.post('/chats', (req, res) => {
         msg: msg,
         created_at: new Date()
     });
+    console.log(newChat.created_at);
     newChat.save()
         .then((res) => {
             console.log('Chat was saved!');
