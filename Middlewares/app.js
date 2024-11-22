@@ -25,21 +25,35 @@ const app = express();
 //     console.log("I am only middleware for random!");
 //     next();
 // });
-app.use("/api", (req, res, next) => {
+
+// app.use("/api", (req, res, next) => {
+//     let {token} = req.query;
+//     if(token === "giveaccess") {
+//         next();
+//     }
+//     throw new ExpressError(401, "ACCESS DENIED!");
+// });
+
+let checkToken = (req, res, next) => {
     let {token} = req.query;
     if(token === "giveaccess") {
         next();
     }
     throw new ExpressError(401, "ACCESS DENIED!");
-});
+}
 
+
+// app.get("/err", async (req, res) => {
+//     // throw new ExpressError(403 ,"Access Denied!!");
+//     abcd = abcd;
+// });
 
 app.get("/err", (req, res) => {
     // throw new ExpressError(403 ,"Access Denied!!");
     abcd = abcd;
 });
 
-app.get("/api", (req, res) => {
+app.get("/api", checkToken, (req, res) => {
     res.send("Data");
 });
 
@@ -56,11 +70,11 @@ app.get("/admin", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-    let {status, message} = err;
-    // res.status(status).send(message);
+    let {status = 500, message} = err;
+    res.status(status).send(message);
     // console.log(err);
-    console.log(err);
-    res.send(err.message);
+    // next(err);
+    // res.send(err.message);
     
 });
 

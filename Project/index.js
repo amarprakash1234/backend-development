@@ -8,10 +8,10 @@ const ExpressError = require("./ExpressError");
 
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
-app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('views engine', 'ejs');
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, "/public")));
+
 
 main()
     .then(res => {
@@ -35,6 +35,7 @@ app.get('/chats', asyncWrap(async (req, res) => {
 
 //New Route
 app.get('/chats/new', (req, res) => {
+    // throw new ExpressError(404, "Page not found");
     res.render('new.ejs');
 
 });
@@ -65,7 +66,7 @@ app.get("/chats/:id",asyncWrap(async (req, res, next) => {
         let {id} = req.params;
         let chat = await Chat.findById(id);
         if(!chat) {
-            next(new ExpressError(404, "Chat not found!"));
+            return next(new ExpressError(404, "Chat not found!"));
         }
         res.render("edit.ejs", {chat});
 
@@ -104,7 +105,8 @@ app.delete('/chats/:id', async (req, res) => {
     }
 });
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
+    // throw new ExpressError(404, "Page not Found");
     res.send("Working root");
 });
 
