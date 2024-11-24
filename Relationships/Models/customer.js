@@ -29,7 +29,7 @@ const customerSchema = new Schema({
 customerSchema.post("findOneAndDelete", async (customer) =>{
 
     if(customer.orders.length) {
-        let res = await Order.deleteMany({ _id: customer.orders });
+        let res = await Order.deleteMany({ _id: {$in : customer.orders} });
         console.log(res);
     }
 
@@ -42,13 +42,17 @@ const Customer = mongoose.model("Customer", customerSchema);
 //Functions
 const findCustomer = async () => {
     let result = await Customer.find({}).populate("orders");
-    console.log(result[0]); // es se result me orders array ke ander id ki jagah document deikhegi.
+    console.log(result[0]); // es se result me orders array ke ander id ki jagah document dikhegi.
 }
 
 const findCustomer2 = async () => {
     let result = await Customer.find({});
     console.log(result[0]); // es se result me orders array ke ander id deikhegi.
 }
+
+// findCustomer();
+
+
 
 const addCust = async () => {
     let newCust = new Customer({
@@ -57,7 +61,7 @@ const addCust = async () => {
 
     let newOrder = new Order({
         item: "Burger",
-        price: 250
+        price: 120
     });
 
     newCust.orders.push(newOrder);
@@ -70,51 +74,52 @@ const addCust = async () => {
 
 // addCust();
 
+
 const delCust = async () => {
-    let data = await Customer.findByIdAndDelete('66d47f019dbc9b56fe39779b');
+    let data = await Customer.findByIdAndDelete('674229867f7eb754cd7b48ed');
     console.log(data);
 }
 
-delCust();
+// delCust();
 
 
 
-// findCustomer();
 
-// const addCustomer = async () => {
-//     let cust1 = new Customer({
-//         name: "Rahul Kumar",
-//     });
 
-//     let order1 = await Order.findOne({item: "Chips"});
-//     let order2 = await Order.findOne({item: "Choclate"});
+const addCustomer = async () => {
+    let cust1 = new Customer({
+        name: "Rahul Kumar",
+    });
 
-//     cust1.orders.push(order1);
-//     cust1.orders.push(order2);
+    let order1 = await Order.findOne({item: "Chips"});
+    let order2 = await Order.findOne({item: "Choclate"});
 
-//     let res = await cust1.save();
-//     console.log(res);
-// }
+    cust1.orders.push(order1);
+    cust1.orders.push(order2);
+
+    let res = await cust1.save();
+    console.log(res);
+}
 
 // addCustomer();
 
-// const addOrders = async () => {
-//     let res = await Order.insertMany([
-//         {
-//             item: "Samosa",
-//             price: 12,
-//         },
-//         {
-//             item: "Chips",
-//             price: 10,
-//         },
-//         {
-//             item: "Choclate",
-//             price: 40,
-//         },
-//     ]);
-//     console.log(res);
-// }
+const addOrders = async () => {
+    let res = await Order.insertMany([
+        {
+            item: "Samosa",
+            price: 12,
+        },
+        {
+            item: "Chips",
+            price: 10,
+        },
+        {
+            item: "Choclate",
+            price: 40,
+        },
+    ]);
+    console.log(res);
+}
 
 // addOrders();
 
